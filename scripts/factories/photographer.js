@@ -1,26 +1,30 @@
-function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price } = data;
-
-    const picture = `assets/photographers/${portrait}`;
-
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        const h4 = document.createElement('h4');
-        h4.textContent = city + ',' + country;
-        const h5 = document.createElement('h5');
-        h5.textContent = tagline;
-        const p = document.createElement('p');
-        p.textContent = price;
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(h4);
-        article.appendChild(h5);
-        article.appendChild(p);
-        return (article);
+class PhotographerFactory{
+    constructor(data) { 
+        this.name = data.name;
+        this.id = data.id;
+        this.portrait = data.portrait;
+        this.city = data.city;
+        this.country = data.country;
+        this.tagline = data.tagline;
+        this.price = data.price;
     }
-    return { name, picture, city, country, tagline, price, getUserCardDOM }
+
+    // const picture = `assets/photographers/${portrait}`;
+
+    getUserCardDOM() {
+        return `
+            <article class='photographer'>
+                <a href="./photographer.html?id=${this.id}">
+                    <img src="./assets/photographers/${this.portrait}"/>
+                    <h2>${this.name}</h2>
+                </a>
+                <div class='détail'>
+                    <h4>${this.city}, ${this.country}</h4>
+                    <h5>${this.tagline}</h5>
+                    <h6>${this.price}€/jour</h6>
+                </div>
+            </article>
+        `
+    }
 }
+

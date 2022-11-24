@@ -19,6 +19,14 @@ h1 {
     margin-right: 100px;
 }
 
+a {
+    text-decoration: none;
+}
+
+img:hover {
+    opacity: 50%;
+}
+
 .logo {
     height: 50px;
     margin-left: 100px;
@@ -29,12 +37,13 @@ h1 {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 100px;
+    text-align: center;
 }
 
 .photographer_section article {
     justify-self: center;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     flex-direction: column;
 }
@@ -50,4 +59,17 @@ h1 {
     border-radius: 100px;
     object-position: center;
     object-fit: cover;
+}
+
+.détail {
+    border: 1px solid red;
+}
+
+.détail h4, .détail h5 ,.détail h6 {
+    margin: 0;
+    padding: 0;
+}
+
+.détail h4 {
+    color: #D3573C;
 }
