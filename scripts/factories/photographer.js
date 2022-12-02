@@ -1,5 +1,5 @@
 class PhotographerFactory{
-    constructor(data) { 
+    constructor(data) {
         this.name = data.name;
         this.id = data.id;
         this.portrait = data.portrait;
@@ -8,8 +8,6 @@ class PhotographerFactory{
         this.tagline = data.tagline;
         this.price = data.price;
     }
-
-    // const picture = `assets/photographers/${portrait}`;
 
     getUserCardDOM() {
         return `
@@ -26,5 +24,30 @@ class PhotographerFactory{
             </article>
         `
     }
+
+    getHeaderPhotographer() {
+        return `
+        <div>
+        <h1>${this.name}</h1>
+        <h4>${this.city}, ${this.country}</h4>
+        <h5>${this.tagline}</h5>
+        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <img src='./assets/photographers/${this.portrait}'/>
+        <div class='détail'>
+        </div>
+        <div>
+        <label>Trier par </label>
+        <select name="x" id="selector-modal-type-picture">
+          <option value="Popularite">Popularité</option>
+          <option value="Date">Date</option>
+          <option value="Title">Title</option>
+        </select>
+      </div>
+      <div class="photographerPageGallery"></div>
+        `
+    }
+
+    
+
 }
 
