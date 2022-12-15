@@ -9,12 +9,23 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="./index.html">
+        <img src="assets/images/logo.png" class="logo"/>
+      </a>
     </header>
     <main id="main">
-      <div class="photograph-header">
+      <div class="photograph-header" id="photographProfile">
         <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
       </div>
+      <div class="headerPhotographer">
+        <label>Trier par </label>
+        <select name="x" id="selector-modal-type-picture">
+          <option value="Popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Title</option>
+        </select>
+      </div>
+      <div id="photographerPageGallery"></div>
     </main>
     <script src="/scripts/factories/media.js"></script>
     <script src="/scripts/factories/photographer.js"></script>
