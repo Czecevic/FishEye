@@ -32,10 +32,34 @@ const filterOption = (mediaPhotographer, option) => {
 const updateGallery = (allMedia) => {
     allMedia.forEach((media) => {
         let medias = new MediaFactory(media);
-        console.log(photographerPageGallery)
+        //console.log(photographerPageGallery)
         photographerPageGallery.innerHTML += medias.createImageOrMovie()
     });
+    likeMedia()
 }
+
+const likeMedia = () => {
+    let likeSum = 0
+    const likeButtons = document.querySelectorAll('.likeButton')
+    const likeCounter = document.querySelector('.LikeCounter')
+    likeButtons.forEach((likeButton) => {
+        likeButton.addEventListener('click', (event) => {
+            let newLike = parseInt(likeButton.firstElementChild.innerHTML)+1
+            likeSum += 1
+            likeButton.firstElementChild.innerHTML = newLike
+            likeCounter.innerHTML = likeSum
+        })
+        let NumberLike = parseInt(likeButton.innerText)
+        likeSum += NumberLike
+        likeCounter.innerHTML = likeSum
+    })
+    console.log(likeSum)
+
+}
+
+// faire des like et dislike
+// lightbox
+
 
 const init = async () => {
     // faire une fonction pour le rendre moins gros
@@ -53,13 +77,11 @@ const init = async () => {
     document.addEventListener('change', (event) => {
         photographerPageGallery.innerHTML = '';
         let value_option = event.target.value
-        console.log(value_option)
+        //console.log(value_option)
         const sortedMedia = filterOption(searchMediaPhotographer, value_option)
-        console.log(sortedMedia)
+        //console.log(sortedMedia)
         updateGallery(sortedMedia)
     })
-
-
 }
 
 

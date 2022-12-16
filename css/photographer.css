@@ -5,7 +5,7 @@ figure {
 }
 
 #contact_modal {
-    display: none;
+    display: block;
 }
 
 .photograph-header {
@@ -78,6 +78,28 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.likeButton {
+    border: none;
+    background: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.likeButton i {
+    color: #911c1c;
+}
+
+.LikeCounter {
+    font-size: 60px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .photograph-header {

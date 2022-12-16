@@ -18,12 +18,11 @@ class Image {
         <figure aria-label="${this.title}">
             <img src="../assets/SamplePhotos/${this.photographerId}/${this.image}" alt="${this.image}" />
                 <figcaption>${this.title}</figcaption>
-                <div>
+                <button class="likeButton">
                     <p>${this.likes}</p>
-                    <button title="J'aime" aria-label="Ajouter un j'aime">
-                        <i class="far fa-heart">like</i>
-                    </button>
-                </div>
+                    <i class="fa-solid fa-heart likeMedia"></i>
+                    <i class="fa-sharp fa-solid fa-heart-crack dislikeMedia"></i>
+                </button>
         </figure>
         `;
     }
@@ -42,12 +41,11 @@ class Video {
                 <source src="../assets/SamplePhotos/${this.photographerId}/${this.video}"/>
             </video>
                 <figcaption>${this.title}</figcaption>
-                <div>
+                <button class="likeButton">
                     <p>${this.likes}</p>
-                    <button>
-                        <i class="far fa-heart" aria-hidden="true">like</i>
-                    </button>
-                </div>
+                    <i class="fa-solid fa-heart likeMedia"></i>
+                    <i class="fa-sharp fa-solid fa-heart-crack dislikeMedia"></i>
+                </button>
         </figure>
         `;
     }

@@ -26,7 +26,7 @@ class PhotographerFactory{
         <h4>${this.city}, ${this.country}</h4>
         <h5>${this.tagline}</h5>
         </div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()" id="contact_modal">Contactez-moi</button>
         <img src='./assets/photographers/${this.portrait}'/>
         `
     }
@@ -34,4 +34,6 @@ class PhotographerFactory{
     
 
 }
+
+// rajouter le contact
 
