@@ -110,6 +110,16 @@ form input {
     padding: 3rem 2rem;
 }
 
+.dontSeeDislike {
+    visibility: hidden;
+}
+
+.seeDislike {
+    visibility: visible;
+    margin-left: -50px;
+    z-index: 1;
+}
+
 #photographProfile {
     display: flex;
     align-items: flex-start;
@@ -125,10 +135,13 @@ form input {
 }
 
 #photographerPageGallery {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    justify-items: center;
+    justify-content: center;
+    justify-content: space-around;
+    grid-gap: 10%;
+    height: 100vh;
 }
 
 #photographerPageGallery figure,

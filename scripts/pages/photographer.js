@@ -43,9 +43,18 @@ const likeMedia = () => {
     const likeButtons = document.querySelectorAll('.likeButton')
     const likeCounter = document.querySelector('.LikeCounter')
     likeButtons.forEach((likeButton) => {
+        const likeButtonStatic = parseInt(likeButton.firstElementChild.innerHTML)
         likeButton.addEventListener('click', (event) => {
+            likeButton.lastElementChild.classList.toggle('dontSeeDislike')
+            likeButton.querySelectorAll('i')[0].classList.toggle('dontSeeDislike')
+            console.log()
             let newLike = parseInt(likeButton.firstElementChild.innerHTML)+1
-            likeSum += 1
+            if (newLike > likeButtonStatic+1) {
+                newLike = parseInt(likeButton.firstElementChild.innerHTML)-1
+                likeSum -= 1
+            } else {
+                likeSum += 1
+            }
             likeButton.firstElementChild.innerHTML = newLike
             likeCounter.innerHTML = likeSum
         })
@@ -56,8 +65,6 @@ const likeMedia = () => {
     console.log(likeSum)
 
 }
-
-// faire des like et dislike
 // lightbox
 
 

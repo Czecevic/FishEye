@@ -20,8 +20,8 @@ class Image {
                 <figcaption>${this.title}</figcaption>
                 <button class="likeButton">
                     <p>${this.likes}</p>
-                    <i class="fa-solid fa-heart likeMedia"></i>
-                    <i class="fa-sharp fa-solid fa-heart-crack dislikeMedia"></i>
+                    <i class="fa-solid fa-heart likeMedia dontSeeDislike"></i>
+                    <i class="fa-regular fa-heart seeDislike"></i>
                 </button>
         </figure>
         `;
@@ -43,8 +43,8 @@ class Video {
                 <figcaption>${this.title}</figcaption>
                 <button class="likeButton">
                     <p>${this.likes}</p>
-                    <i class="fa-solid fa-heart likeMedia"></i>
-                    <i class="fa-sharp fa-solid fa-heart-crack dislikeMedia"></i>
+                    <i class="fa-solid fa-heart likeMedia dontSeeDislike"></i>
+                    <i class="fa-regular fa-heart seeDislike"></i>
                 </button>
         </figure>
         `;
