@@ -65,7 +65,54 @@ const likeMedia = () => {
     console.log(likeSum)
 
 }
-// lightbox
+
+const lightbox = () => {
+    const images = document.querySelectorAll('#photographerPageGallery img')
+    const lightbox = document.querySelector('#lightbox')
+    const img = document.querySelector('#lightbox img')
+    const arrowLeft = document.querySelector('.fa-arrow-left')
+    const arrowRight = document.querySelector('.fa-arrow-right')
+    let imgIndex = 0
+    images.forEach(image => {
+        image.addEventListener('click', e => {
+            lightbox.classList.add('active')
+            img.src = image.src;
+            imgIndex = [...images].indexOf(image)
+            lightbox.style.display = "flex";
+            setTimeout(() => {
+                lightbox.style.opacity = "1";
+            }, 10)
+            lightbox.appendChild(img)
+            arrowLeft.addEventListener('click', () => {
+                console.log('test')
+                imgIndex--;
+                if(imgIndex < 0) {
+                    imgIndex = images.length - 1;
+                }
+                console.log(images[imgIndex])
+                img.src = images[imgIndex].src
+            })
+        
+            arrowRight.addEventListener('click', () => {
+                imgIndex++;
+                if(imgIndex > images.length - 1) {
+                    imgIndex = 0;
+                }
+                img.src = images[imgIndex].src
+            })
+        })
+    })
+
+    window.addEventListener('click', e => {
+        if(e.target.classList.contains('lightbox')) {
+            lightbox.style.opacity = '0';
+            setTimeout(() => {
+                lightbox.style.display = "none";
+            }, 350)
+        }
+    })
+
+}
 
 
 const init = async () => {
@@ -84,11 +131,10 @@ const init = async () => {
     document.addEventListener('change', (event) => {
         photographerPageGallery.innerHTML = '';
         let value_option = event.target.value
-        //console.log(value_option)
         const sortedMedia = filterOption(searchMediaPhotographer, value_option)
-        //console.log(sortedMedia)
         updateGallery(sortedMedia)
     })
+    lightbox()
 }
 
 

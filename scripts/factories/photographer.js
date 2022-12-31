@@ -28,6 +28,33 @@ class PhotographerFactory{
         </div>
         <button class="contact_button" onclick="displayModal()" id="contact_modal">Contactez-moi</button>
         <img src='./assets/photographers/${this.portrait}'/>
+        <div id="contact__modal" class="modal" role="dialog" aria-modal="true">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h1 class="modal-header-title">Contactez-moi ${this.name}</h1>
+                <span class="close"><i class="fa-solid fa-x"></i></span>
+            </header>
+            <form>
+                <div>
+                    <label for="firstname">Prénom</label>
+                    <input type="text" name="firstname" tabindex="3" id="firstname" required>
+                </div>
+                <div>
+                    <label for="lastname">Nom</label>
+                    <input type="text" name="lastname" tabindex="3" id="lastname" required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="lastname" tabindex="3" id="email" required>
+                </div>
+                <div>
+                    <label for="message">Votre message</label>
+                    <input tabindex="3" id="message">
+                </div>
+            </form>
+                <button type="submit" id="form-submit-button" tabindex="3">Envoyer</button>
+        </div>
+    </div>
         `
     }
 
@@ -35,5 +62,4 @@ class PhotographerFactory{
 
 }
 
-// rajouter le contact
 
