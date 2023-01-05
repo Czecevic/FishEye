@@ -47,7 +47,6 @@ const likeMedia = () => {
         likeButton.addEventListener('click', (event) => {
             likeButton.lastElementChild.classList.toggle('dontSeeDislike')
             likeButton.querySelectorAll('i')[0].classList.toggle('dontSeeDislike')
-            console.log()
             let newLike = parseInt(likeButton.firstElementChild.innerHTML)+1
             if (newLike > likeButtonStatic+1) {
                 newLike = parseInt(likeButton.firstElementChild.innerHTML)-1
@@ -62,47 +61,46 @@ const likeMedia = () => {
         likeSum += NumberLike
         likeCounter.innerHTML = likeSum
     })
-    console.log(likeSum)
 
 }
 
 const lightbox = () => {
-    const images = document.querySelectorAll('#photographerPageGallery img')
+    const medias = document.querySelectorAll('#photographerPageGallery img')
     const lightbox = document.querySelector('#lightbox')
-    const img = document.querySelector('#lightbox img')
+    const lightboxImg = document.querySelector('#lightboxImage')
+    const createImage = document.createElement('img');
     const arrowLeft = document.querySelector('.fa-arrow-left')
     const arrowRight = document.querySelector('.fa-arrow-right')
     let imgIndex = 0
-    images.forEach(image => {
-        image.addEventListener('click', e => {
+    medias.forEach(media => {
+        media.addEventListener('click', e => {
             lightbox.classList.add('active')
-            img.src = image.src;
-            imgIndex = [...images].indexOf(image)
+            createImage.src = media.src;
+            imgIndex = [...medias].indexOf(media)
             lightbox.style.display = "flex";
-            setTimeout(() => {
-                lightbox.style.opacity = "1";
-            }, 10)
-            lightbox.appendChild(img)
+            lightboxImg.appendChild(createImage)
+            
             arrowLeft.addEventListener('click', () => {
-                console.log('test')
                 imgIndex--;
                 if(imgIndex < 0) {
-                    imgIndex = images.length - 1;
+                    imgIndex = medias.length - 1;
                 }
                 console.log(images[imgIndex])
-                img.src = images[imgIndex].src
+                createImage.src = images[imgIndex].src
             })
         
             arrowRight.addEventListener('click', () => {
                 imgIndex++;
-                if(imgIndex > images.length - 1) {
+                if(imgIndex > medias.length - 1) {
                     imgIndex = 0;
                 }
-                img.src = images[imgIndex].src
+                createImage.src = medias[imgIndex].src
             })
         })
     })
-
+    // changer en croix
+    // jouer avec les tabulations (key entrer pour acceder à une image)
+    // gerer les alt pour le screen reader
     window.addEventListener('click', e => {
         if(e.target.classList.contains('lightbox')) {
             lightbox.style.opacity = '0';

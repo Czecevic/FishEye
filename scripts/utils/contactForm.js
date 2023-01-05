@@ -1,4 +1,4 @@
-async function displayModal() {
+function displayModal() {
 	const modal = document.getElementById("contact__modal");
 	const btn = document.querySelector(".contact_button");
 	const span = document.getElementsByClassName("close")[0];
