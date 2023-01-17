@@ -65,28 +65,44 @@ const likeMedia = () => {
 }
 
 const lightbox = () => {
-    const medias = document.querySelectorAll('#photographerPageGallery img')
+    const medias = document.querySelectorAll('#photographerPageGallery img, source')
     const lightbox = document.querySelector('#lightbox')
+    const title = document.querySelector('figcaption')
     const lightboxImg = document.querySelector('#lightboxImage')
     const createImage = document.createElement('img');
+    const titleMedia = document.createElement('h1')
+    const createMovie = document.createElement('video');
     const arrowLeft = document.querySelector('.fa-arrow-left')
     const arrowRight = document.querySelector('.fa-arrow-right')
+    const btnClose = document.querySelector('.close-button i')
     let imgIndex = 0
+    console.log(lightboxImg)
     medias.forEach(media => {
         media.addEventListener('click', e => {
-            lightbox.classList.add('active')
-            createImage.src = media.src;
-            imgIndex = [...medias].indexOf(media)
-            lightbox.style.display = "flex";
-            lightboxImg.appendChild(createImage)
-            
+            if (media.src.endsWith('.jpg') == true) {
+                lightbox.classList.add('active')
+                createImage.src = media.src;
+                imgIndex = [...medias].indexOf(media)
+                lightbox.style.display = "flex";
+                lightboxImg.appendChild(createImage)
+                titleMedia.innerHTML = media.alt
+                lightboxImg.appendChild(titleMedia)
+
+                // lightboxImg.appendChild(media.alt)
+            } else {
+                console.log('test')
+                createMovie.src = media.src;
+                imgIndex = [...medias].indexOf(media)
+                lightbox.style.display = "flex";
+                lightboxImg.appendChild(createMovie)
+
+            }
             arrowLeft.addEventListener('click', () => {
                 imgIndex--;
                 if(imgIndex < 0) {
                     imgIndex = medias.length - 1;
                 }
-                console.log(images[imgIndex])
-                createImage.src = images[imgIndex].src
+                createImage.src = medias[imgIndex].src
             })
         
             arrowRight.addEventListener('click', () => {
@@ -96,19 +112,17 @@ const lightbox = () => {
                 }
                 createImage.src = medias[imgIndex].src
             })
+
+            btnClose.addEventListener('click', () => {
+                if (e.target !== e.currentTarget) 
+                return lightbox.style.display = "none"
+            })
+
         })
     })
     // changer en croix
     // jouer avec les tabulations (key entrer pour acceder à une image)
     // gerer les alt pour le screen reader
-    window.addEventListener('click', e => {
-        if(e.target.classList.contains('lightbox')) {
-            lightbox.style.opacity = '0';
-            setTimeout(() => {
-                lightbox.style.display = "none";
-            }, 350)
-        }
-    })
 
 }
 
