@@ -64,68 +64,6 @@ const likeMedia = () => {
 
 }
 
-const lightbox = () => {
-    const medias = document.querySelectorAll('#photographerPageGallery img, source')
-    const lightbox = document.querySelector('#lightbox')
-    const title = document.querySelector('figcaption')
-    const lightboxImg = document.querySelector('#lightboxImage')
-    const createImage = document.createElement('img');
-    const titleMedia = document.createElement('h1')
-    const createMovie = document.createElement('video');
-    const arrowLeft = document.querySelector('.fa-arrow-left')
-    const arrowRight = document.querySelector('.fa-arrow-right')
-    const btnClose = document.querySelector('.close-button i')
-    let imgIndex = 0
-    console.log(lightboxImg)
-    medias.forEach(media => {
-        media.addEventListener('click', e => {
-            if (media.src.endsWith('.jpg') == true) {
-                lightbox.classList.add('active')
-                createImage.src = media.src;
-                imgIndex = [...medias].indexOf(media)
-                lightbox.style.display = "flex";
-                lightboxImg.appendChild(createImage)
-                titleMedia.innerHTML = media.alt
-                lightboxImg.appendChild(titleMedia)
-
-                // lightboxImg.appendChild(media.alt)
-            } else {
-                console.log('test')
-                createMovie.src = media.src;
-                imgIndex = [...medias].indexOf(media)
-                lightbox.style.display = "flex";
-                lightboxImg.appendChild(createMovie)
-
-            }
-            arrowLeft.addEventListener('click', () => {
-                imgIndex--;
-                if(imgIndex < 0) {
-                    imgIndex = medias.length - 1;
-                }
-                createImage.src = medias[imgIndex].src
-            })
-        
-            arrowRight.addEventListener('click', () => {
-                imgIndex++;
-                if(imgIndex > medias.length - 1) {
-                    imgIndex = 0;
-                }
-                createImage.src = medias[imgIndex].src
-            })
-
-            btnClose.addEventListener('click', () => {
-                if (e.target !== e.currentTarget) 
-                return lightbox.style.display = "none"
-            })
-
-        })
-    })
-    // changer en croix
-    // jouer avec les tabulations (key entrer pour acceder à une image)
-    // gerer les alt pour le screen reader
-
-}
-
 
 const init = async () => {
     // faire une fonction pour le rendre moins gros
@@ -146,7 +84,7 @@ const init = async () => {
         const sortedMedia = filterOption(searchMediaPhotographer, value_option)
         updateGallery(sortedMedia)
     })
-    lightbox()
+    lightbox.init()
 }
 
 
