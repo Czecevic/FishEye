@@ -55,76 +55,102 @@ const likeMedia = () => {
                 likeSum += 1
             }
             likeButton.firstElementChild.innerHTML = newLike
-            likeCounter.innerHTML = likeSum
+            likeCounter.innerHTML = likeSum + '<i class="fa-solid fa-heart" style="margin-right:100px"></i> 300$ / jour'
         })
         let NumberLike = parseInt(likeButton.innerText)
         likeSum += NumberLike
-        likeCounter.innerHTML = likeSum
+        likeCounter.innerHTML = likeSum + '<i class="fa-solid fa-heart" style="margin-right:100px"></i> 300$ / jour'
     })
 
 }
 
 const lightbox = () => {
-    const medias = document.querySelectorAll('#photographerPageGallery img, source')
+    const medias = document.querySelectorAll('#photographerPageGallery img[src$=".jpg"],source[src$=".mp4"]')
     const lightbox = document.querySelector('#lightbox')
-    const title = document.querySelector('figcaption')
     const lightboxImg = document.querySelector('#lightboxImage')
     const createImage = document.createElement('img');
     const titleMedia = document.createElement('h1')
     const createMovie = document.createElement('video');
+    createMovie.setAttribute('controls', 'controls');
     const arrowLeft = document.querySelector('.fa-arrow-left')
     const arrowRight = document.querySelector('.fa-arrow-right')
     const btnClose = document.querySelector('.close-button i')
-    let imgIndex = 0
-    console.log(lightboxImg)
+    let mediaIndex = 0
     medias.forEach(media => {
         media.addEventListener('click', e => {
-            if (media.src.endsWith('.jpg') == true) {
-                lightbox.classList.add('active')
+            lightbox.classList.add('active')
+            if (media instanceof HTMLImageElement) {
                 createImage.src = media.src;
-                imgIndex = [...medias].indexOf(media)
-                lightbox.style.display = "flex";
+                createImage.alt = media.alt;
+                mediaIndex = [...medias].indexOf(media)
                 lightboxImg.appendChild(createImage)
                 titleMedia.innerHTML = media.alt
                 lightboxImg.appendChild(titleMedia)
-
-                // lightboxImg.appendChild(media.alt)
+                createMovie.style.display = "none";
             } else {
-                console.log('test')
-                createMovie.src = media.src;
-                imgIndex = [...medias].indexOf(media)
-                lightbox.style.display = "flex";
+                createMovie.src = media.children[0].src;
+                mediaIndex = [...medias].indexOf(media)
                 lightboxImg.appendChild(createMovie)
-
+                titleMedia.innerHTML = media.title
+                lightboxImg.appendChild(titleMedia)
+                createImage.style.display = "none";
             }
+            lightbox.style.display = "flex"
+            
             arrowLeft.addEventListener('click', () => {
-                imgIndex--;
-                if(imgIndex < 0) {
-                    imgIndex = medias.length - 1;
+                mediaIndex--;
+                if(mediaIndex < 0) {
+                    mediaIndex = medias.length - 1;
                 }
-                createImage.src = medias[imgIndex].src
+                if (media instanceof HTMLImageElement) {
+                    createImage.src = medias[mediaIndex].src
+                    createImage.alt = medias[mediaIndex].alt
+                    titleMedia.innerHTML = medias[mediaIndex].alt
+                    lightboxImg.appendChild(titleMedia)
+                    createMovie.style.display = "none";
+                    createImage.style.display = "block";
+                } else {
+                    createMovie.src = medias[mediaIndex].children[0].src
+                    titleMedia.innerHTML = medias[mediaIndex].title
+                    lightboxImg.appendChild(titleMedia)
+                    createImage.style.display = "none";
+                    createMovie.style.display = "block";
+                }
+                lightbox.style.display = "flex"
             })
-        
+    
             arrowRight.addEventListener('click', () => {
-                imgIndex++;
-                if(imgIndex > medias.length - 1) {
-                    imgIndex = 0;
+                mediaIndex++;
+                if(mediaIndex > medias.length - 1) {
+                    mediaIndex = 0;
                 }
-                createImage.src = medias[imgIndex].src
+                if (media instanceof HTMLImageElement) {
+                    createImage.src = medias[mediaIndex].src
+                    createImage.alt = medias[mediaIndex].alt
+                    titleMedia.innerHTML = medias[mediaIndex].alt
+                    lightboxImg.appendChild(titleMedia)
+                    createMovie.style.display = "none";
+                    createImage.style.display = "block";
+                } else {
+                    createMovie.src = medias[mediaIndex].children[0].src
+                    titleMedia.innerHTML = medias[mediaIndex].title
+                    lightboxImg.appendChild(titleMedia)
+                    createImage.style.display = "none";
+                    createMovie.style.display = "block";
+                }
+                lightbox.style.display = "flex"
             })
-
+    
             btnClose.addEventListener('click', () => {
                 if (e.target !== e.currentTarget) 
                 return lightbox.style.display = "none"
             })
-
+    
         })
     })
-    // changer en croix
-    // jouer avec les tabulations (key entrer pour acceder à une image)
-    // gerer les alt pour le screen reader
-
 }
+// jouer avec les tabulations (key entrer pour acceder à une image)
+// gérer la touche entrer / les fleches directionnels / echappe pour quitter la lightbox
 
 
 const init = async () => {
@@ -146,6 +172,7 @@ const init = async () => {
         const sortedMedia = filterOption(searchMediaPhotographer, value_option)
         updateGallery(sortedMedia)
     })
+    installDisplayModal()
     lightbox()
 }
 

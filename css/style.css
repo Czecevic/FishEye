@@ -22,14 +22,13 @@ a {
     text-decoration: none;
 }
 
+section {
+    margin: 30px;
+}
+
 .PhotographerIndexPage {
     width: 200px;
     height: 200px;
-}
-
-
-img:hover {
-    opacity: 50%;
 }
 
 .logo {
@@ -64,10 +63,6 @@ img:hover {
     border-radius: 100px;
     object-position: center;
     object-fit: cover;
-}
-
-.détail {
-    border: 1px solid red;
 }
 
 .détail h4, .détail h5 ,.détail h6 {

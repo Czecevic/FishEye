@@ -22,12 +22,14 @@ class PhotographerFactory{
     getHeaderPhotographer() {
         return `
         <div class="photographProfile_detail">
-        <h1 class="titlePhotographe">${this.name}</h1>
-        <h4>${this.city}, ${this.country}</h4>
-        <h5>${this.tagline}</h5>
+            <h1 class="titlePhotographe">${this.name}</h1>
+            <p>${this.city}, ${this.country}</p>
+            <p>${this.tagline}</p>
         </div>
-        <button class="contact_button" onclick="displayModal()" id="contact_modal">Contactez-moi</button>
-        <img src='./assets/photographers/${this.portrait}'/>
+        <button class="contact_button" id="contact_modal" tabindex="1">Contactez-moiii</button>
+        <div class="photographProfile_img" tabindex="0">
+            <img src='./assets/photographers/${this.portrait}'/>
+        </div>
         <div id="contact__modal" class="modal" role="dialog" aria-modal="true">
         <div class="modal-content">
             <header class="modal-header">
@@ -37,22 +39,22 @@ class PhotographerFactory{
             <form>
                 <div>
                     <label for="firstname">Prénom</label>
-                    <input type="text" name="firstname" tabindex="3" id="firstname" required>
+                    <input type="text" name="firstname" tabindex="0" id="firstname" required>
                 </div>
                 <div>
                     <label for="lastname">Nom</label>
-                    <input type="text" name="lastname" tabindex="3" id="lastname" required>
+                    <input type="text" name="lastname" tabindex="0" id="lastname" required>
                 </div>
                 <div>
                     <label for="email">Email</label>
-                    <input type="email" name="lastname" tabindex="3" id="email" required>
+                    <input type="email" name="lastname" tabindex="0" id="email" required>
                 </div>
                 <div>
                     <label for="message">Votre message</label>
-                    <input tabindex="3" id="message">
+                    <input tabindex="0" id="message">
                 </div>
             </form>
-                <button type="submit" id="form-submit-button" tabindex="3">Envoyer</button>
+                <button type="submit" class="modal-button" id="form-submit-button" tabindex="0">Envoyer</button>
         </div>
     </div>
         `
