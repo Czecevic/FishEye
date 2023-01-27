@@ -33,9 +33,13 @@ class PhotographerFactory{
         <div id="contact__modal" class="modal" role="dialog" aria-modal="true">
         <div class="modal-content">
             <header class="modal-header">
-                <h1 class="modal-header-title">Contactez-moi ${this.name}</h1>
+                <h1 class="modal-header-title">
+                    <span>Contactez-moi</span>
+                    </br>
+                    <span>${this.name}</span>
+                </h1>
                 <span class="close"><i class="fa-solid fa-x"></i></span>
-            </header>
+                </header>
             <form>
                 <div>
                     <label for="firstname">Prénom</label>
