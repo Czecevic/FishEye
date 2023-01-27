@@ -77,6 +77,7 @@ const lightbox = () => {
     const btnClose = document.querySelector('.close-button i')
     medias.forEach(media => {
         media.addEventListener('click', e => {
+            createImage.style.display = "none";
             let mediaIndex = 0
             lightbox.classList.add('active')
             if (media instanceof HTMLImageElement) {
@@ -148,82 +149,6 @@ const lightbox = () => {
                 if (e.target !== e.currentTarget) 
                 return lightbox.style.display = "none"
             })
-        })
-        media.addEventListener('keypress', e => {
-            console.log(e.key)
-            if (e.key == "Enter") {
-                let mediaIndex = 0
-                lightbox.classList.add('active')
-                if (media instanceof HTMLImageElement) {
-                    createImage.src = media.src;
-                    createImage.alt = media.alt;
-                    mediaIndex = [...medias].indexOf(media)
-                    titleMedia.innerHTML = media.alt
-                    lightboxImg.appendChild(createImage)
-                    lightboxImg.appendChild(titleMedia)
-                    createMovie.style.display = "none";
-                    createImage.style.display = "block";
-                } else {
-                    createMovie.src = media.children[0].src;
-                    mediaIndex = [...medias].indexOf(media)
-                    lightboxImg.appendChild(createMovie)
-                    titleMedia.innerHTML = media.title
-                    lightboxImg.appendChild(titleMedia)
-                    createMovie.style.display = "block";
-                    createImage.style.display = "none";
-                }
-                lightbox.style.display = "flex"
-                
-                arrowLeft.addEventListener('click', () => {
-                    mediaIndex--;
-                    if(mediaIndex < 0) {
-                        mediaIndex = medias.length - 1;
-                    }
-                    if (medias[mediaIndex] instanceof HTMLImageElement) {
-                        createImage.src = medias[mediaIndex].src
-                        createImage.alt = medias[mediaIndex].alt
-                        titleMedia.innerHTML = medias[mediaIndex].alt
-                        lightboxImg.appendChild(createImage)
-                        lightboxImg.appendChild(titleMedia)
-                        titleMedia.innerHTML = media.alt
-                        createMovie.style.display = "none";
-                        createImage.style.display = "block";
-                    } else {
-                        createMovie.src = medias[mediaIndex].children[0].src
-                        titleMedia.innerHTML = medias[mediaIndex].title
-                        lightboxImg.appendChild(createMovie)
-                        lightboxImg.appendChild(titleMedia)
-                        createImage.style.display = "none";
-                        createMovie.style.display = "block";
-                    }
-                })
-                arrowRight.addEventListener('click', () => {
-                    mediaIndex++;
-                    if(mediaIndex > medias.length - 1) {
-                        mediaIndex = 0;
-                    }
-                    if (medias[mediaIndex] instanceof HTMLImageElement) {
-                        createImage.src = medias[mediaIndex].src
-                        createImage.alt = medias[mediaIndex].alt
-                        titleMedia.innerHTML = medias[mediaIndex].alt
-                        lightboxImg.appendChild(createImage)
-                        lightboxImg.appendChild(titleMedia)
-                        createMovie.style.display = "none";
-                        createImage.style.display = "block";
-                    } else {
-                        createMovie.src = medias[mediaIndex].children[0].src
-                        titleMedia.innerHTML = medias[mediaIndex].title
-                        lightboxImg.appendChild(createMovie)
-                        lightboxImg.appendChild(titleMedia)
-                        createImage.style.display = "none";
-                        createMovie.style.display = "block";
-                    }
-                })
-                btnClose.addEventListener('click', () => {
-                    if (e.target !== e.currentTarget) 
-                    return lightbox.style.display = "none"
-                })
-            }
         })
     })
 }

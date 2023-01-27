@@ -150,8 +150,8 @@ form input {
 }
 
 .close-button {
-    top: 75px;
-    right: 0px;
+    top: 40px;
+    position: absolute;
     border: none;
     background: none;
     font-weight: 600;
@@ -163,6 +163,7 @@ form input {
 
 .arrowRightAndClose {
     display: flex;
+    flex-direction: column-reverse;
 }
 
 .modal {
@@ -298,17 +299,17 @@ form input {
 }
 
 #lightbox img {
-    width: 100%;
+    width: 80%;
     object-fit: cover;
-    height: 1000px;
+    height: 800px;
     border-radius: 5px;
     box-shadow: rgb(0 0 0 / 50%) 0px 5px 15px;
     animation: lightbox-in .5s ease-in-out .3s both;
 }
 
 #lightbox video {
-    width: 90%;
-    height: 1000px;
+    width: 80%;
+    height: 800px;
     border-radius: 5px;
     box-shadow: rgb(0 0 0 / 50%) 0px 5px 15px;
     animation: lightbox-in .5s ease-in-out .3s both;
