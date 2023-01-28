@@ -31,7 +31,6 @@ const filterOption = (mediaPhotographer, option) => {
 const updateGallery = (allMedia) => {
   allMedia.forEach((media) => {
     let medias = new MediaFactory(media);
-    //console.log(photographerPageGallery)
     photographerPageGallery.innerHTML += medias.createImageOrMovie();
   });
   likeMedia();
@@ -71,7 +70,7 @@ const lightbox = () => {
     "#photographerPageGallery img, video"
   );
   const lightbox = document.querySelector("#lightbox");
-  const lightboxImg = document.querySelector("#lightboxImage");
+  const lightboxMedia = document.querySelector("#lightboxMedia");
   const createImage = document.createElement("img");
   const titleMedia = document.createElement("h1");
   const createMovie = document.createElement("video");
@@ -79,89 +78,230 @@ const lightbox = () => {
   const arrowLeft = document.querySelector(".fa-arrow-left");
   const arrowRight = document.querySelector(".fa-arrow-right");
   const btnClose = document.querySelector(".close-button i");
+  const mediaLength = medias.length;
   medias.forEach((media) => {
     media.addEventListener("click", (e) => {
       let mediaIndex = 0;
       lightbox.classList.add("active");
+      mediaIndex = [...medias].indexOf(media);
       if (media instanceof HTMLImageElement) {
         createImage.src = media.src;
         createImage.alt = media.alt;
-        mediaIndex = [...medias].indexOf(media);
         titleMedia.innerHTML = media.alt;
-        lightboxImg.appendChild(createImage);
-        lightboxImg.appendChild(titleMedia);
+        lightboxMedia.appendChild(createImage);
+        lightboxMedia.appendChild(titleMedia);
         createMovie.style.display = "none";
         createImage.style.display = "block";
       } else {
         createMovie.src = media.children[0].src;
-        mediaIndex = [...medias].indexOf(media);
-        lightboxImg.appendChild(createMovie);
+        lightboxMedia.appendChild(createMovie);
         titleMedia.innerHTML = media.title;
-        lightboxImg.appendChild(titleMedia);
+        lightboxMedia.appendChild(titleMedia);
         createMovie.style.display = "block";
         createImage.style.display = "none";
       }
       lightbox.style.display = "flex";
 
-      if (installEventArrows == 0) {
-        console.log("install event");
+      // clique fleche gauche
+      arrowLeft.addEventListener("click", () => {
+        mediaIndex--;
+        if (mediaIndex < 0) {
+          mediaIndex = medias.length - 1;
+        }
+        lightboxWithArrow(
+          lightboxMedia,
+          createImage,
+          titleMedia,
+          createMovie,
+          mediaIndex,
+          medias
+        );
+      });
+      // clique fleche droite
+      arrowRight.addEventListener("click", () => {
+        mediaIndex++;
+        if (mediaIndex > medias.length - 1) {
+          mediaIndex = 0;
+        }
+        lightboxWithArrow(
+          lightboxMedia,
+          createImage,
+          titleMedia,
+          createMovie,
+          mediaIndex,
+          medias
+        );
+      });
+      // clique close button
+      btnClose.addEventListener("click", () => {
+        if (e.target !== e.currentTarget) {
+          createImage.remove();
+          createMovie.remove();
+          titleMedia.remove();
+          return (lightbox.style.display = "none");
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        switch (event.code) {
+          case "ArrowLeft":
+            mediaIndex = (mediaIndex - 1 + mediaLength) % mediaLength;
+            lightboxWithArrow(
+              lightboxMedia,
+              createImage,
+              titleMedia,
+              createMovie,
+              mediaIndex,
+              medias
+            );
+            break;
+          case "ArrowRight":
+            mediaIndex = (mediaIndex + 1) % mediaLength;
+            lightboxWithArrow(
+              lightboxMedia,
+              createImage,
+              titleMedia,
+              createMovie,
+              mediaIndex,
+              medias
+            );
+            break;
+          case "Escape":
+            createImage.remove();
+            createMovie.remove();
+            titleMedia.remove();
+            lightbox.style.display = "none";
+            break;
+        }
+      });
+    });
+    media.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        let mediaIndex = 0;
+        lightbox.classList.add("active");
+        mediaIndex = [...medias].indexOf(media);
+        if (media instanceof HTMLImageElement) {
+          createImage.src = media.src;
+          createImage.alt = media.alt;
+          titleMedia.innerHTML = media.alt;
+          lightboxMedia.appendChild(createImage);
+          lightboxMedia.appendChild(titleMedia);
+          createMovie.style.display = "none";
+          createImage.style.display = "block";
+        } else {
+          createMovie.src = media.children[0].src;
+          lightboxMedia.appendChild(createMovie);
+          titleMedia.innerHTML = media.title;
+          lightboxMedia.appendChild(titleMedia);
+          createMovie.style.display = "block";
+          createImage.style.display = "none";
+        }
+        lightbox.style.display = "flex";
+
+        // clique fleche gauche
         arrowLeft.addEventListener("click", () => {
           mediaIndex--;
           if (mediaIndex < 0) {
             mediaIndex = medias.length - 1;
           }
-          if (medias[mediaIndex] instanceof HTMLImageElement) {
-            createImage.src = medias[mediaIndex].src;
-            createImage.alt = medias[mediaIndex].alt;
-            titleMedia.innerHTML = medias[mediaIndex].alt;
-            lightboxImg.appendChild(createImage);
-            lightboxImg.appendChild(titleMedia);
-            titleMedia.innerHTML = media.alt;
-            createImage.style.display = "block";
-          } else {
-            createMovie.src = medias[mediaIndex].children[0].src;
-            titleMedia.innerHTML = medias[mediaIndex].title;
-            lightboxImg.appendChild(createMovie);
-            lightboxImg.appendChild(titleMedia);
-            createImage.remove();
-            createMovie.style.display = "block";
-          }
+          lightboxWithArrow(
+            lightboxMedia,
+            createImage,
+            titleMedia,
+            createMovie,
+            mediaIndex,
+            medias
+          );
         });
+        // clique fleche droite
         arrowRight.addEventListener("click", () => {
           mediaIndex++;
-          console.log(mediaIndex)
           if (mediaIndex > medias.length - 1) {
             mediaIndex = 0;
           }
-          if (medias[mediaIndex] instanceof HTMLImageElement) {
-            createImage.src = medias[mediaIndex].src;
-            createImage.alt = medias[mediaIndex].alt;
-            titleMedia.innerHTML = medias[mediaIndex].alt;
-            lightboxImg.appendChild(createImage);
-            lightboxImg.appendChild(titleMedia);
-            createMovie.remove();
-            createImage.style.display = "block";
-          } else {
-            createMovie.src = medias[mediaIndex].children[0].src;
-            titleMedia.innerHTML = medias[mediaIndex].title;
-            lightboxImg.appendChild(createMovie);
-            lightboxImg.appendChild(titleMedia);
+          lightboxWithArrow(
+            lightboxMedia,
+            createImage,
+            titleMedia,
+            createMovie,
+            mediaIndex,
+            medias
+          );
+        });
+        // clique close button
+        btnClose.addEventListener("click", () => {
+          if (e.target !== e.currentTarget) {
             createImage.remove();
-            createMovie.style.display = "block";
+            createMovie.remove();
+            titleMedia.remove();
+            return (lightbox.style.display = "none");
           }
         });
-        btnClose.addEventListener("click", () => {
-            if (e.target !== e.currentTarget) {
+        document.addEventListener("keydown", (event) => {
+          switch (event.code) {
+            case "ArrowLeft":
+              mediaIndex = (mediaIndex - 1 + mediaLength) % mediaLength;
+              lightboxWithArrow(
+                lightboxMedia,
+                createImage,
+                titleMedia,
+                createMovie,
+                mediaIndex,
+                medias
+              );
+              break;
+            case "ArrowRight":
+              mediaIndex = (mediaIndex + 1) % mediaLength;
+              lightboxWithArrow(
+                lightboxMedia,
+                createImage,
+                titleMedia,
+                createMovie,
+                mediaIndex,
+                medias
+              );
+              break;
+            case "Escape":
               createImage.remove();
-              titleMedia.remove();
               createMovie.remove();
-              return (lightbox.style.display = "none");
-            }
+              titleMedia.remove();
+              lightbox.style.display = "none";
+              break;
+          }
         });
       }
-      installEventArrows = 1;
     });
   });
+};
+
+const lightboxWithArrow = (
+  lightboxMedia,
+  image,
+  title,
+  movie,
+  index,
+  medias
+) => {
+  if (lightboxMedia.children[2] !== undefined) {
+    lightboxMedia.children[2].remove();
+    lightboxMedia.children[2].remove();
+  }
+  if (medias[index] instanceof HTMLImageElement) {
+    image.src = medias[index].src;
+    image.alt = medias[index].alt;
+    title.innerHTML = medias[index].alt;
+    lightboxMedia.appendChild(image);
+    lightboxMedia.appendChild(title);
+    title.innerHTML = medias[index].alt;
+    movie.remove();
+    image.style.display = "block";
+  } else {
+    movie.src = medias[index].children[0].src;
+    title.innerHTML = medias[index].title;
+    lightboxMedia.appendChild(movie);
+    lightboxMedia.appendChild(title);
+    image.remove();
+    movie.style.display = "block";
+  }
 };
 
 // jouer avec les tabulations (key entrer pour acceder à une image)

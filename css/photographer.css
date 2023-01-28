@@ -154,7 +154,7 @@ form input {
 }
 
 .close-button {
-  top: 40px;
+  top: 15%;
   position: absolute;
   border: none;
   background: none;
@@ -295,7 +295,7 @@ form input {
   gap: 20px;
 }
 
-#lightboxImage {
+#lightboxMedia {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -324,7 +324,6 @@ form input {
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
-  flex-wrap: wrap;
   gap: 30px;
   border-radius: 5px;
   background-color: #fafafa;

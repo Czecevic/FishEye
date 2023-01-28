@@ -1,10 +1,10 @@
-class PhotographerFactory{
-    constructor(data) {
-        Object.assign(this, data)
-    }
-å
-    getUserCardDOM() {
-        return `
+class PhotographerFactory {
+  constructor(data) {
+    Object.assign(this, data);
+  }
+  å;
+  getUserCardDOM() {
+    return `
             <article class='photographer'>
                 <a href="./photographer.html?id=${this.id}">
                     <img class="PhotographerIndexPage" src="./assets/photographers/${this.portrait}"/>
@@ -16,18 +16,18 @@ class PhotographerFactory{
                     <h6>${this.price}€/jour</h6>
                 </div>
             </article>
-        `
-    }
+        `;
+  }
 
-    getHeaderPhotographer() {
-        return `
-        <div class="photographProfile_detail">
+  getHeaderPhotographer() {
+    return `
+        <div class="photographProfile_detail" tabindex="1">
             <h1 class="titlePhotographe">${this.name}</h1>
             <p>${this.city}, ${this.country}</p>
             <p>${this.tagline}</p>
         </div>
-        <button class="contact_button" id="contact_modal" tabindex="1">Contactez-moiii</button>
-        <div class="photographProfile_img" tabindex="0">
+        <button class="contact_button" id="contact_modal" tabindex="1">Contactez-moi</button>
+        <div class="photographProfile_img" tabindex="1">
             <img src='./assets/photographers/${this.portrait}'/>
         </div>
         <div id="contact__modal" class="modal" role="dialog" aria-modal="true">
@@ -61,11 +61,6 @@ class PhotographerFactory{
                 <button type="submit" class="modal-button" id="form-submit-button" tabindex="0">Envoyer</button>
         </div>
     </div>
-        `
-    }
-
-    
-
+        `;
+  }
 }
-
-
