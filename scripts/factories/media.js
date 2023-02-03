@@ -16,7 +16,7 @@ class Image {
   createImageOrMovie() {
     return `
         <figure aria-label="${this.title}">
-            <img src="../assets/SamplePhotos/${this.photographerId}/${this.image}" alt="${this.title}" tabindex="3" />
+            <img src="./assets/SamplePhotos/${this.photographerId}/${this.image}" alt="${this.title}" tabindex="3" />
                 <div class="footerFigure">
                     <figcaption>${this.title}</figcaption>
                     <button class="likeButton" tabindex="3">
@@ -38,6 +38,8 @@ class Video {
   createImageOrMovie() {
     return `
         <figure>
+            <video controls tabindex="1">
+                <source src="./assets/SamplePhotos/${this.photographerId}/${this.video}"/>
             <video controls tabindex="3">
                 <source src="../assets/SamplePhotos/${this.photographerId}/${this.video}"/>
             </video>

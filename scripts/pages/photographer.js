@@ -3,7 +3,7 @@ const photographerPageGallery = document.getElementById(
 );
 
 async function getData() {
-  const data = await fetch("../../data/photographers.json")
+  const data = await fetch("./data/photographers.json")
     .then((result) => result.json())
     .catch((error) => error);
   return data;
