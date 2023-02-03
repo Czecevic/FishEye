@@ -21,7 +21,7 @@ class PhotographerFactory {
 
   getHeaderPhotographer() {
     return `
-        <div class="photographProfile_detail" tabindex="3">
+        <div class="photographProfile_detail" tabindex="2">
             <h1 class="titlePhotographe">${this.name}</h1>
             <p>${this.city}, ${this.country}</p>
             <p>${this.tagline}</p>
