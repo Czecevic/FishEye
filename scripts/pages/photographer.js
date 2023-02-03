@@ -94,8 +94,8 @@ const lightbox = () => {
         createImage.style.display = "block";
       } else {
         createMovie.src = media.children[0].src;
-        lightboxMedia.appendChild(createMovie);
         titleMedia.innerHTML = media.title;
+        lightboxMedia.appendChild(createMovie);
         lightboxMedia.appendChild(titleMedia);
         createMovie.style.display = "block";
         createImage.style.display = "none";

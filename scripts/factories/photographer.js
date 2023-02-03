@@ -21,13 +21,13 @@ class PhotographerFactory {
 
   getHeaderPhotographer() {
     return `
-        <div class="photographProfile_detail" tabindex="1">
+        <div class="photographProfile_detail" tabindex="3">
             <h1 class="titlePhotographe">${this.name}</h1>
             <p>${this.city}, ${this.country}</p>
             <p>${this.tagline}</p>
         </div>
-        <button class="contact_button" id="contact_modal" tabindex="1">Contactez-moi</button>
-        <div class="photographProfile_img" tabindex="1">
+        <button class="contact_button" id="contact_modal" tabindex="3">Contactez-moi</button>
+        <div class="photographProfile_img" tabindex="3">
             <img src='./assets/photographers/${this.portrait}'/>
         </div>
         <div id="contact__modal" class="modal" role="dialog" aria-modal="true">
