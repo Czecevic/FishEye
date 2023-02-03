@@ -16,7 +16,7 @@ class Image {
     createImageOrMovie() {
 		return `
         <figure aria-label="${this.title}">
-            <img src="../assets/SamplePhotos/${this.photographerId}/${this.image}" alt="${this.title}" tabindex="1" />
+            <img src="./assets/SamplePhotos/${this.photographerId}/${this.image}" alt="${this.title}" tabindex="1" />
                 <div class="footerFigure">
                     <figcaption>${this.title}</figcaption>
                     <button class="likeButton" tabindex="1">
