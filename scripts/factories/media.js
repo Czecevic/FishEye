@@ -40,7 +40,7 @@ class Video {
         return `
         <figure>
             <video controls tabindex="1">
-                <source src="../assets/SamplePhotos/${this.photographerId}/${this.video}"/>
+                <source src="./assets/SamplePhotos/${this.photographerId}/${this.video}"/>
             </video>
                 <div class="footerFigure">
                     <figcaption>${this.title}</figcaption>
