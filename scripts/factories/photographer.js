@@ -27,7 +27,7 @@ class PhotographerFactory {
             <p>${this.tagline}</p>
         </div>
         <button class="contact_button" id="contact_modal" tabindex="3">Contactez-moi</button>
-        <div class="photographProfile_img" tabindex="3">
+        <div class="photographProfile_img" tabindex="4">
             <img src='./assets/photographers/${this.portrait}'/>
         </div>
         <div id="contact__modal" class="modal" role="dialog" aria-modal="true">
@@ -43,22 +43,22 @@ class PhotographerFactory {
             <form>
                 <div>
                     <label for="firstname">Prénom</label>
-                    <input type="text" name="firstname" tabindex="0" id="firstname" required>
+                    <input type="text" name="firstname" tabindex="3" id="firstname" required>
                 </div>
                 <div>
                     <label for="lastname">Nom</label>
-                    <input type="text" name="lastname" tabindex="0" id="lastname" required>
+                    <input type="text" name="lastname" tabindex="3" id="lastname" required>
                 </div>
                 <div>
                     <label for="email">Email</label>
-                    <input type="email" name="lastname" tabindex="0" id="email" required>
+                    <input type="email" name="lastname" tabindex="3" id="email" required>
                 </div>
                 <div>
                     <label for="message">Votre message</label>
-                    <input tabindex="0" id="message">
+                    <input tabindex="3" id="message">
                 </div>
             </form>
-                <button type="submit" class="modal-button" id="form-submit-button" tabindex="0">Envoyer</button>
+                <button type="submit" class="modal-button" id="form-submit-button" tabindex="3">Envoyer</button>
         </div>
     </div>
         `;
