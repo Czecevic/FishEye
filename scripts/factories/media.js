@@ -40,16 +40,14 @@ class Video {
         <figure>
             <video controls tabindex="5">
                 <source src="./assets/SamplePhotos/${this.photographerId}/${this.video}"/>
-            <video controls tabindex="5">
-                <source src="../assets/SamplePhotos/${this.photographerId}/${this.video}"/>
             </video>
                 <div class="footerFigure">
-                    <figcaption>${this.title}</figcaption>
-                    <button class="likeButton" tabindex="5">
-                        <p>${this.likes}</p>
-                        <i class="fa-solid fa-heart likeMedia dontSeeDislike"></i>
-                        <i class="fa-regular fa-heart seeDislike"></i>
-                    </button>
+                  <figcaption>${this.title}</figcaption>
+                  <button class="likeButton" tabindex="5">
+                      <p>${this.likes}</p>
+                      <i class="fa-solid fa-heart likeMedia dontSeeDislike"></i>
+                      <i class="fa-regular fa-heart seeDislike"></i>
+                  </button>
                 </div>
         </figure>
         `;
