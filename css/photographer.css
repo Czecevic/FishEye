@@ -43,6 +43,11 @@ span {
   width: 300px;
 }
 
+.contact_button:focus {
+  outline: none !important;
+  border: 3px solid #d3573c;
+}
+
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -112,6 +117,11 @@ form input {
 
 .likeButton i {
   color: #911c1c;
+}
+
+.likeButton:focus {
+  outline: none !important;
+  border: 3px solid #d3573c;
 }
 
 .LikeCounter {
@@ -281,6 +291,11 @@ form input {
   cursor: pointer;
   text-align: center;
   font-size: 20px;
+}
+
+.filter_option #selector-modal-type-picture:focus {
+  outline: none !important;
+  border: 3px solid #d3573c;
 }
 
 #lightbox {
