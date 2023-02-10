@@ -13,7 +13,12 @@
   <body>
     <header>
       <a href="./index.html">
-        <img src="assets/images/logo.png" tabindex="1" class="logo" />
+        <img
+          src="assets/images/logo.png"
+          tabindex="1"
+          class="logo"
+          alt="logo"
+        />
       </a>
     </header>
     <main id="main">
@@ -25,7 +30,11 @@
       <section class="filter">
         <div class="filter_option">
           <h3>Trier par</h3>
-          <select id="selector-modal-type-picture" tabindex="4">
+          <select
+            id="selector-modal-type-picture"
+            tabindex="4"
+            aria-label="selection"
+          >
             <option value="popularity">Popularité</option>
             <option value="date">Date</option>
             <option value="title">Title</option>
@@ -37,17 +46,17 @@
       </section>
     </main>
     <div id="lightbox">
-      <button class="arrow arrow-left" tabindex="5">
+      <button class="arrow arrow-left" tabindex="5" aria-label="gauche">
         <i class="fa-solid fa-arrow-left"></i>
       </button>
       <div>
         <div id="lightboxMedia"></div>
       </div>
       <div class="arrowRightAndClose">
-        <button class="arrow arrow-right" tabindex="6">
+        <button class="arrow arrow-right" tabindex="6" aria-label="droite">
           <i class="fa-solid fa-arrow-right"></i>
         </button>
-        <button class="close-button" tabindex="6">
+        <button class="close-button" tabindex="6" aria-label="fermer">
           <i class="fa-solid fa-x"></i>
         </button>
       </div>
