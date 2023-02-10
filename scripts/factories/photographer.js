@@ -1,8 +1,8 @@
-class PhotographerFactory {
+class PhotographerFactory { // eslint-disable-line
   constructor(data) {
     Object.assign(this, data);
   }
-  å;
+
   getUserCardDOM() {
     return `
         <article class='photographer'>

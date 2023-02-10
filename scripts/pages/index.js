@@ -10,7 +10,7 @@ function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
-    const photographerModel = new PhotographerFactory(photographer);
+    const photographerModel = new PhotographerFactory(photographer);// eslint-disable-line
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.innerHTML += userCardDOM;
   });

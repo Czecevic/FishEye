@@ -1,4 +1,4 @@
-class MediaFactory {
+class MediaFactory {// eslint-disable-line
   constructor(data) {
     if (data.image) {
       return new Image(data);

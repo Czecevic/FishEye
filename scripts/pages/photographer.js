@@ -30,7 +30,7 @@ const filterOption = (mediaPhotographer, option) => {
 
 const updateGallery = (allMedia) => {
   allMedia.forEach((media) => {
-    let medias = new MediaFactory(media);
+    let medias = new MediaFactory(media); // eslint-disable-line
     photographerPageGallery.innerHTML += medias.createImageOrMovie();
   });
   likeMedia();
@@ -42,7 +42,7 @@ const likeMedia = () => {
   const likeCounter = document.querySelector(".LikeCounter");
   likeButtons.forEach((likeButton) => {
     const likeButtonStatic = parseInt(likeButton.firstElementChild.innerHTML);
-    likeButton.addEventListener("click", (event) => {
+    likeButton.addEventListener("click", () => {
       likeButton.lastElementChild.classList.toggle("dontSeeDislike");
       likeButton.querySelectorAll("i")[0].classList.toggle("dontSeeDislike");
       let newLike = parseInt(likeButton.firstElementChild.innerHTML) + 1;
@@ -77,7 +77,7 @@ const lightbox = () => {
   createMovie.setAttribute("controls", "controls");
   const arrowLeft = document.querySelector(".fa-arrow-left");
   const arrowRight = document.querySelector(".fa-arrow-right");
-  const btnClose = document.querySelector(".close-button i");
+  const btnClose = document.querySelector(".close-button span");
   const mediaLength = medias.length;
   medias.forEach((media) => {
     media.addEventListener("click", (e) => {
@@ -307,8 +307,6 @@ const lightboxWithArrow = (
 // jouer avec les tabulations (key entrer pour acceder à une image)
 // gérer la touche entrer / les fleches directionnels / echappe pour quitter la lightbox
 
-let installEventArrows = 0;
-
 const init = async () => {
   // faire une fonction pour le rendre moins gros
   const { photographers, media } = await getData();
@@ -317,7 +315,7 @@ const init = async () => {
   const searchPhotographer = photographers.filter(
     (photographer) => photographer.id == id
   );
-  const Photographer = new PhotographerFactory(searchPhotographer[0]);
+  const Photographer = new PhotographerFactory(searchPhotographer[0]); // eslint-disable-line
   const getHeaderPhotographer = Photographer.getHeaderPhotographer();
   add.innerHTML += getHeaderPhotographer;
   // faire une fonction pour appeller ceci
@@ -333,7 +331,7 @@ const init = async () => {
     updateGallery(sortedMedia);
     lightbox();
   });
-  installDisplayModal();
+  installDisplayModal(); // eslint-disable-line
   lightbox();
 };
 

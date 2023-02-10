@@ -1,7 +1,7 @@
-function installDisplayModal() {
+function installDisplayModal() { // eslint-disable-line
     const displayModal = document.querySelector("#contact_modal");
 
-    displayModal.addEventListener("click", (e) => {
+    displayModal.addEventListener("click", () => {
         console.log("test");
         const modal = document.getElementById("contact__modal");
         const closeBtn = document.getElementsByClassName("close")[0];
